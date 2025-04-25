@@ -1,5 +1,5 @@
 import bs58 from "bs58";
-import { getAddress, keccak256, toHex } from "viem";
+import { bytesToNumber, getAddress, keccak256, toHex } from "viem";
 
 import type { ChainType, InteropAddress } from "../internal.js";
 import { CHAIN_TYPE_MAP } from "../constants/index.js";
@@ -29,7 +29,7 @@ const calculateChecksum = (addressData: InteropAddress): string => {
  * @param options - The options to format the address
  * @returns The formatted address
  */
-const formatAddress = (address: Uint8Array, options: { chainType: ChainType }) => {
+const formatAddress = (address: Uint8Array, options: { chainType: ChainType }): string => {
     if (toHex(options.chainType) === "0x0000") {
         const formattedAddress = getAddress(toHex(address));
         return formattedAddress;
@@ -43,16 +43,16 @@ const formatAddress = (address: Uint8Array, options: { chainType: ChainType }) =
     return toHex(address);
 };
 
-const formatChainReference = (chainReference: Uint8Array, chainType: ChainType) => {
+const formatChainReference = (chainReference: Uint8Array, chainType: ChainType): string => {
     if (toHex(chainType) === "0x0000") {
-        return Number.parseInt(toHex(chainReference), 16);
+        return bytesToNumber(chainReference).toString();
     }
 
     if (toHex(chainType) === "0x0002") {
         return bs58.encode(chainReference);
     }
 
-    return chainReference;
+    return bytesToNumber(chainReference).toString();
 };
 
 /**
