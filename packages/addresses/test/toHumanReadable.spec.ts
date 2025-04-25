@@ -83,6 +83,7 @@ describe("erc7930", () => {
             };
 
             const expected = "0xD46acbA18e4f3C8b8b6c501DF1a6B05609a642Bd@eip155:10#CCA85AD3";
+            expect(toHumanReadable(interopAddress)).toBe(expected);
         });
     });
 });
