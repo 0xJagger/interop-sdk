@@ -46,6 +46,7 @@ describe("erc7930", () => {
                 version: 1,
                 chainType: hexToBytes("0x0000"),
                 chainReference: hexToBytes("0x01"),
+                address: new Uint8Array(),
             };
 
             const humanReadableAddress = toHumanReadable(interopAddress);
@@ -57,6 +58,7 @@ describe("erc7930", () => {
             const interopAddress: InteropAddress = {
                 version: 1,
                 chainType: hexToBytes("0x0002"),
+                chainReference: new Uint8Array(),
                 address: bs58.decode("MJKqp326RZCHnAAbew9MDdui3iCKWco7fsK9sVuZTX2"),
             };
             const expected = "MJKqp326RZCHnAAbew9MDdui3iCKWco7fsK9sVuZTX2@solana:#18D1CBB4";
@@ -68,6 +70,8 @@ describe("erc7930", () => {
             const interopAddress: InteropAddress = {
                 version: 1,
                 chainType: hexToBytes("0x0002"),
+                chainReference: new Uint8Array(),
+                address: new Uint8Array(),
             };
             const expected = "@solana:#F40BB840";
 

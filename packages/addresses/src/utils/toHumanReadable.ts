@@ -60,7 +60,7 @@ const formatChainReference = (chainReference: Uint8Array, chainType: ChainType):
  */
 export const toHumanReadable = (addressData: InteropAddress): string => {
     const { chainType, chainReference, address } = addressData;
-    const formattedAddress = address ? formatAddress(address, { chainType }) : "";
+    const formattedAddress = address.length ? formatAddress(address, { chainType }) : "";
     const chainTypeHex = toHex(chainType);
     const namespace = CHAIN_TYPE_MAP[chainTypeHex];
 
